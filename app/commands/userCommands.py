@@ -1,11 +1,12 @@
 import click
 import getpass
-from ..extentions.database import mongo
+from flask import current_app, Blueprint
 from werkzeug.security import generate_password_hash
-from flask import Blueprint
-
+from ..extentions.database import mongo
 
 userCommands = Blueprint("user", __name__)
+
+
 
 @userCommands.cli.command("getUser")
 @click.argument("name")
@@ -14,25 +15,24 @@ def get_user(name):
     user = [u for u in userCollection.find({"name": name})]
     print(user)
 
+
 @userCommands.cli.command("addUser")
 @click.argument("name")
 def create_user(name):
     userCollection = mongo.db.users
     password = getpass.getpass()
-    user = {
-        "name": name,
-        "password": generate_password_hash(password)
-    }
+    user = {"name": name,
+            "password": generate_password_hash(password)}
 
-    userExists = userCollection.find_one({"name": name })
+    userExists = userCollection.find_one({"name": name})
     if userExists:
-        print('Usuario já existe')
+        print(f"Usuario {name} já existe")
     else:
-        userCollection.insert(user)
-        print('Usuario cadastrado com sucesso!')
+        userCollection.insertMany("user")
+        print(f"Usuario {name} criado com sucesso!")
 
 
-@userCommands.cli.command("dropUser")
+@userCommands.cli.command("deleteUser")
 @click.argument("name")
 def delete_user(name):
     userCollection = mongo.db.users

@@ -1,16 +1,19 @@
 from flask import Flask
-from .routes.usuario import clientes
+from .routes.usuario import usuario
+from .routes.cadastroCliente import cadastroCliente
 from .extentions import database
 from .commands.userCommands import userCommands
 
 
-def create_app():
+def create_app(config_object="app.settings"):
     app = Flask(__name__)
-    app.config["MONGO_URI"] = "mongodb+srv://robson:<password>@cloudopss.ugxyu.mongodb.net/?retryWrites=true&w=majority"
-    app.register_blueprint(clientes)
+    app.config.from_object(config_object)
+
+    app.register_blueprint(usuario)
+    app.register_blueprint(cadastroCliente)
+
     app.register_blueprint(userCommands)
     database.init_app(app)
-
 
     return app
 
