@@ -28,7 +28,7 @@ def create_user(name):
     if userExists:
         print(f"Usuario {name} já existe")
     else:
-        userCollection.insertMany("user")
+        userCollection.insert_many("user")
         print(f"Usuario {name} criado com sucesso!")
 
 

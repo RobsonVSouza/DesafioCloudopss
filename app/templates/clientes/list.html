@@ -4,7 +4,7 @@
         <div class="row">
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">Produtos em Estoque</h1>
+                    <h1 class="h2">Cadastro Cliente</h1>
                 </div>
                 <div class="table-responsive">
 
@@ -14,7 +14,7 @@
                     </div>
                     {% endfor %} {% endif %} {% endwith %}
 
-                    <a href="{{ url_for('produto.inserirProduto') }}" class="btn btn-dark">Adicionar Novo Produto</a>
+                    <a href="{{ url_for('cliente.insertCliente') }}" class="btn btn-dark">Adicionar Cliente</a>
                     <table class="table table-striped table-sm">
                         <thead>
                             <tr>
@@ -37,8 +37,8 @@
                                 <td> {{ produto['quantidade'] }} </td>
                                 <td> {{ produto['preco'] }} </td>
                                 <td> {{ produto['valor_total'] }} </td>
-                                <td><a href="{{ url_for('produto.editarProduto', idproduto=produto['_id']) }}">Editar</a></td>
-                                <td><a href="{{ url_for('produto.deletarProduto', idproduto=produto['_id']) }}">Excluir</a></td>
+                                <td><a href="{{ url_for('cliente.editCliente', idcliente=cliente['_id']) }}">Editar</a></td>
+                                <td><a href="{{ url_for('cliente.deleteCliente', idcliente=cliente['_id']) }}">Excluir</a></td>
                             </tr>
                             {% endfor %}
                         </tbody>
