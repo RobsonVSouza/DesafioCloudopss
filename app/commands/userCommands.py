@@ -24,11 +24,11 @@ def create_user(name):
     user = {"name": name,
             "password": generate_password_hash(password)}
 
-    userExists = userCollection.find_one({"name": name})
+    userExists = userCollection.find_one("user")
     if userExists:
         print(f"Usuario {name} já existe")
     else:
-        userCollection.insert_many("user")
+        userCollection.insert_one({"name": name})
         print(f"Usuario {name} criado com sucesso!")
 
 
