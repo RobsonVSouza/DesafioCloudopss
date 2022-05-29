@@ -1,6 +1,6 @@
 from flask import Flask
 from .routes.usuario import usuario
-from .routes.cadastroCliente import cadastroCliente
+from .routes.cliente import cadastroCliente
 from .extentions import database
 from .commands.userCommands import userCommands
 
