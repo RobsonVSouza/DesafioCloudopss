@@ -6,8 +6,6 @@ from ..extentions.database import mongo
 
 userCommands = Blueprint("user", __name__)
 
-
-
 @userCommands.cli.command("getUser")
 @click.argument("name")
 def get_user(name):
@@ -32,7 +30,7 @@ def create_user(name):
         print(f"Usuario {name} criado com sucesso!")
 
 
-@userCommands.cli.command("deleteUser")
+@userCommands.cli.command("dropUser")
 @click.argument("name")
 def delete_user(name):
     userCollection = mongo.db.users
@@ -43,7 +41,7 @@ def delete_user(name):
 
         if question.upper() == "S":
             userCollection.delete_one({"name": name})
-            print(f"Usuário {name} deletado com sucesso!")
+            print(f"Usuário {name} deletado!")
         else:
             exit()
     else:
