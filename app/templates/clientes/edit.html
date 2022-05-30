@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+        <div class="container-fluid">
+            <div class="row">
+
+                <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <h1 class="h2">Alterar Produto</h1>
+                    </div>
+
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-success" role="alert">
+                                  {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+
+                    <form action="{{ url_for('cliente.editCliente') }}" method="post">
+                        <input type="hidden" name="idcliente" value="{{ cliente[0]['_id'] }}" id="idcliente" class="form-control" placeholder="Id do Cliente" required>
+
+                        <label for="nome" class="visually-hidden">Nome:</label>
+                        <input type="text" name="nome" value="{{ cliente[0]['cliente'] }}" id="nome" class="form-control" placeholder="Nome do Cliente" required autofocus>
+                        
+                        <label for="email" class="visually-hidden">Email:</label>
+                        <input type="text" name="email" value="{{ cliente[0]['email'] }}" id="email" class="form-control" placeholder="Email" required>
+
+                         <label for="telefone" class="visually-hidden">Telefone:</label>
+                        <input type="text" name="telefone" value="{{ cliente[0]['telefone'] }}" id="telefone" class="form-control" placeholder="Telefone" required>
+
+                         <label for="endereco" class="visually-hidden">Endereco:</label>
+                        <input type="text" name="endereco" value="{{ cliente[0]['endereco'] }}" id="endereco" class="form-control" placeholder="Endereco" required>
+
+                        <label for="profissao" class="visually-hidden">Profissao:</label>
+                        <input type="text" name="profissao" value="{{ cliente[0]['endereco'] }}" id="profissao" class="form-control" placeholder="Profissao" required>
+
+                        
+                        <label for="curriculo" class="visually-hidden">Categoria</label>
+                        <select class="form-select" name="categoria" id="curriculo">
+                            <option value="Placeholder" selected disabled>Informe modelo de curriculo</option>
+                            <option value="PDF">PDF</option>
+                            <option value="Word">Word</option>
+                        </select>
+                        <br>
+                        <button class="w-100 btn btn-lg btn-primary" type="submit">Salvar</button>
+                    </form>
+                </main>
+            </div>
+        </div>
+{% endblock %}
